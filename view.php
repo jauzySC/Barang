@@ -25,5 +25,6 @@
     <?php if ($stokAkhir !== null): ?>
         <h2>Stok akhir untuk barang "<?php echo htmlspecialchars($NamaBarang); ?>" adalah: <?php echo $stokAkhir; ?></h2>
     <?php endif; ?>
+
 </body>
 </html>

@@ -31,7 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stok = intval($_POST['stok'] ?? 0);
     $pembelian = intval($_POST['pembelian'] ?? 0);
 
-    // Create an instance of Barang and calculate final stock
+    // Membuat instance
     $panggilBarang = new Barang($NamaBarang, '', 0, $stok, $pembelian);
     $stokAkhir = $panggilBarang->StokAkhirBarang();
 }
