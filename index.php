@@ -5,20 +5,23 @@ class Barang {
     public $JumlahBarang;
     public $stok;
     public $pembelian;
-    public $expired;
 
-    public function __construct($NamaBarang = '', $JenisBarang = '', $JumlahBarang = 0, $stok = 0, $pembelian = 0, $expired = 0) {
+
+    public function __construct($NamaBarang = '', $JenisBarang = '', $JumlahBarang = 0, $stok = 0, $pembelian = 0,) {
         $this->NamaBarang = $NamaBarang;
         $this->JenisBarang = $JenisBarang;
         $this->JumlahBarang = $JumlahBarang;
         $this->stok = $stok;
         $this->pembelian = $pembelian;
-        $this->expired = $expired;
+       
     }
 
     public function StokAkhirBarang() {
         $this->stok = $this->stok - $this->pembelian;
         return $this->stok;
+    }
+    public function detailBarang () {
+        return $this->NamaBarang . ' | ' . $this->JenisBarang . ' | ' . $this->JumlahBarang . ' | ' . $this->stok . ' | ' . $this->pembelian;
     }
 }
 
@@ -26,13 +29,13 @@ $stokAkhir = null;
 $NamaBarang = '';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Retrieve and process form data
-    $NamaBarang = $_POST['NamaBarang'] ?? '';
-    $stok = intval($_POST['stok'] ?? 0);
-    $pembelian = intval($_POST['pembelian'] ?? 0);
-
-    // Membuat instance
-    $panggilBarang = new Barang($NamaBarang, '', 0, $stok, $pembelian);
-    $stokAkhir = $panggilBarang->StokAkhirBarang();
+   $panggilBarang= new Barang();
+   $panggilBarang -> NamaBarang = $_POST['NamaBarang'];
+   $panggilBarang -> JenisBarang = $_POST['JenisBarang'];
+   $panggilBarang->stok = intval($_POST['stok']);
+   $panggilBarang->pembelian = intval($_POST['pembelian']);
+   
+   $Stokakhir = $panggilBarang->stokAkhirBarang();
+    $Detailbarang = $panggilBarang->detailBarang();
 }
 ?>

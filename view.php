@@ -21,7 +21,6 @@
             <label for="stok">No HP:</label>
             <input class="form-control border-black" type="tel" id="noHP" name="noHP" required><br>
 
-
             <label for="pembelian">Nama barang:</label>
             <input class="form-control border-black" type="text" id="namaBrng" name="namaBrng" required><br>
 
@@ -34,13 +33,32 @@
             <label for="pembelian">Jumlah Pembelian:</label>
             <input class="form-control border-black" type="number" id="pembelian" name="pembelian" required><br><br>
 
-            <input class="btn btn-dark" type="submit" value="Lihat Hasil">
+            <input class="btn btn-dark" type="submit" value="Lihat Nota">
         </form>
     </div>
 
 
-    <?php if ($stokAkhir !== null): ?>
-        <h2>Stok akhir untuk barang "<?php echo htmlspecialchars($NamaBarang); ?>" adalah: <?php echo $stokAkhir; ?></h2>
+    <?php if ($_SERVER["REQUEST_METHOD"] == "POST"): ?>
+        <div class="card">
+            <div class="card-header">
+                Pembelian Berhasil!
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">Nota Pembelian</h5>
+                <pre>
+                    <p class="card-text">Nama      : <?php echo $panggilCustomer->namaCustomer; ?></p>
+                    <p class="card-text">Alamat    : <?php echo $panggilCustomer->alamatCustomer; ?></p>
+                    <p class="card-text">No. HP    : <?php echo $panggilCustomer->nomorHPCustomer; ?></p>
+                    <p class="card-text">Barang    : <?php echo $panggilBarang->NamaBarang; ?></p>
+                    <p class="card-text">Jenis     : <?php echo $panggilBarang->JenisBarang; ?></p>
+                    <p class="card-text">
+                        <small class="text-body-secondary">
+                            Sisa stok : <?php echo $stokAkhir ; ?>
+                        </small>
+                    </p>
+                </pre>
+            </div>
+        </div>
     <?php endif; ?>
 
 </body>
